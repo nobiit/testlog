@@ -1,5 +1,7 @@
 import { configure, Configuration } from 'log4js';
 
+const SERVICE_NAME = 'elofun_game_services';
+
 const loggerConfig: Configuration = {
 	appenders: {
 		console: { type: 'stdout' },
@@ -8,7 +10,7 @@ const loggerConfig: Configuration = {
 };
 
 if ('LOGSTASH_HOST' in process.env) {
-    console.log('Enabling logstash ...');
+	console.log('Enabling logstash ...');
 	loggerConfig.appenders.logstash = {
 		type: '@log4js-node/logstashudp',
 		host: process.env.LOGSTASH_HOST,
@@ -18,7 +20,7 @@ if ('LOGSTASH_HOST' in process.env) {
 
 loggerConfig.categories.default = { appenders: Object.keys(loggerConfig.appenders), level: process.env.LOGGER_LEVEL ?? 'debug' };
 
-const logger = configure(loggerConfig).getLogger();
+const logger = configure(loggerConfig).getLogger(SERVICE_NAME);
 
 global.console.debug = (message?: unknown, ...optionalParams: unknown[]): void => {
 	return logger.debug(message, ...optionalParams);
