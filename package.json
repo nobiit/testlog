@@ -35,7 +35,8 @@
     "prepare": "npm run build",
     "test": "mocha",
     "upgrade": "npx npm-check -u",
-    "version": "npm run build && npm run changelog:update"
+    "version": "npm run build && npm run changelog:update",
+    "start": "ts-node src"
   },
   "devDependencies": {
     "@types/chai": "^4.1.6",
@@ -51,7 +52,7 @@
     "mocha": "^9.0.0",
     "nyc": "^15.0.0",
     "source-map-support": "^0.5.12",
-    "ts-node": "^10.0.0",
+    "ts-node": "^10.8.1",
     "typescript": "^4.0.3"
   },
   "config": {
@@ -60,6 +61,8 @@
     }
   },
   "dependencies": {
+    "@log4js-node/logstashudp": "^1.2.1",
+    "log4js": "^6.5.2",
     "sitka": "^1.0.5"
   }
 }
